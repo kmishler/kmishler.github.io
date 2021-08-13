@@ -30,11 +30,19 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
+        <script src="js/proj4.js"></script>
+        <script src="js/proj4leaflet.js"></script>
         <script src="data/MappingGothicDublinSheet12_1.js"></script>
         <script>
+        var crs = new L.Proj.CRS('EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs', {
+            resolutions: [2800, 1400, 700, 350, 175, 84, 42, 21, 11.2, 5.6, 2.8, 1.4, 0.7, 0.35, 0.14, 0.07],
+        });
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[53.32562524875815,-6.288642443667453],[53.35347615615125,-6.217529230302968]]);
+            crs: crs,
+            continuousWorld: false,
+            worldCopyJump: false, 
+            zoomControl:true, maxZoom:28, minZoom:10
+        }).fitBounds([[53.329891245637725,-6.291523278615072],[53.357739367825154,-6.220410065250586]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -47,7 +55,7 @@
             pane: 'pane_OpenStreetMap_0',
             opacity: 1.0,
             attribution: '',
-            minZoom: 1,
+            minZoom: 10,
             maxZoom: 28,
             minNativeZoom: 0,
             maxNativeZoom: 19
@@ -65,12 +73,16 @@
                         <td>' + (feature.properties['Place'] !== null ? autolinker.link(feature.properties['Place'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Full image</th>\
+                        <th scope="row">Link</th>\
                         <td>' + (feature.properties['Full image'] !== null ? autolinker.link(feature.properties['Full image'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Thumbnail</th>\
                         <td>' + (feature.properties['Thumbnail'] !== null ? autolinker.link(feature.properties['Thumbnail'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Story</th>\
+                        <td>' + (feature.properties['Story'] !== null ? autolinker.link(feature.properties['Story'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Extract</th>\
@@ -87,16 +99,16 @@
         function style_MappingGothicDublinSheet12_1_0() {
             return {
                 pane: 'pane_MappingGothicDublinSheet12_1',
-                radius: 4.0,
+                radius: 3.999999999999997,
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1,
+                weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(232,113,141,1.0)',
+                fillColor: 'rgba(0,0,0,1.0)',
                 interactive: true,
             }
         }
