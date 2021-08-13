@@ -30,19 +30,11 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/proj4.js"></script>
-        <script src="js/proj4leaflet.js"></script>
         <script src="data/MappingGothicDublinSheet12_1.js"></script>
         <script>
-        var crs = new L.Proj.CRS('EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs', {
-            resolutions: [2800, 1400, 700, 350, 175, 84, 42, 21, 11.2, 5.6, 2.8, 1.4, 0.7, 0.35, 0.14, 0.07],
-        });
         var map = L.map('map', {
-            crs: crs,
-            continuousWorld: false,
-            worldCopyJump: false, 
-            zoomControl:true, maxZoom:28, minZoom:10
-        }).fitBounds([[53.329891245637725,-6.291523278615072],[53.357739367825154,-6.220410065250586]]);
+            zoomControl:true, maxZoom:28, minZoom:6
+        }).fitBounds([[53.33137599530678,-6.292588792910767],[53.359223148087125,-6.221475579546281]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -55,7 +47,7 @@
             pane: 'pane_OpenStreetMap_0',
             opacity: 1.0,
             attribution: '',
-            minZoom: 10,
+            minZoom: 6,
             maxZoom: 28,
             minNativeZoom: 0,
             maxNativeZoom: 19
@@ -65,7 +57,7 @@
         function pop_MappingGothicDublinSheet12_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Date</th>\
+                        <th scope="row">Image Year</th>\
                         <td>' + (feature.properties['Date'] !== null ? autolinker.link(feature.properties['Date'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
@@ -99,16 +91,16 @@
         function style_MappingGothicDublinSheet12_1_0() {
             return {
                 pane: 'pane_MappingGothicDublinSheet12_1',
-                radius: 3.999999999999997,
+                radius: 4.800000000000001,
                 opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
+                color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 2.0,
+                weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(0,0,0,1.0)',
+                fillColor: 'rgba(25,17,34,1.0)',
                 interactive: true,
             }
         }
